@@ -81,12 +81,13 @@ function buildCharts(sample) {
       y: smpOtuId.slice(0,10).map(otu_id => `OTU ${otu_id}`).reverse(),
       text: yticks,
       type: 'bar',
-      orientation: 'h'
+      orientation: 'h',
 
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top 10 Bacteria Cultures Found"
+      title: "<b>Top 10 Bacteria Cultures Found</b>",
+      paper_bgcolor:'peachpuff'
      
     };
     // 10. Use Plotly to plot the data with the layout. 
@@ -103,14 +104,16 @@ function buildCharts(sample) {
         color: smpOtuId,
         size: smpValues,
         colorscale: 'Portland'
+      
       }
 
     }];
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bacteria Cultures Per Sample",
+      title: "<b>Bacteria Cultures Per Sample</b>",
       xaxis: {title: "OTU IDs"},
+      paper_bgcolor:'peachpuff'
       
       
     };
@@ -146,7 +149,8 @@ function buildCharts(sample) {
     }];
 
     var gaugeLayout = { 
-      width: 500, height: 400, margin: {t:0, b: 0}
+      width: 500, height: 400, margin: {t:0, b: 0},
+      paper_bgcolor:'peachpuff'
     };
 
     Plotly.newPlot("gauge", gaugeData, gaugeLayout);
