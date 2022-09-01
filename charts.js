@@ -117,11 +117,43 @@ function buildCharts(sample) {
 
     // 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
-  });
-}
 
+    var metadata = data.metadata;
+    var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+    var result = resultArray[0];
 
+    
+    var washfreq = result.wfreq
 
+    var gaugeData = [{
+        domain: { x: [0,1], y: [0,1]},
+        value: washfreq,
+        type: "indicator",
+        mode: "gauge+number",
+        title: "<b>Belly Button Washing Frequency</b>, <br> Scrubs per Week",
+        gauge: {
+          bar: {color: 'black'},
+          axis: {range: [null, 10]},
+          steps: [
+            { range: [0, 2], color: "red" },
+            { range: [2, 4], color: "orange" },
+            { range: [4, 6], color: "yellow"},
+            { range: [6, 8], color: "yellowgreen"},
+            { range: [8 , 10], color: "green"}
+          ],
+        }
+
+    }];
+
+    var gaugeLayout = { 
+      width: 500, height: 400, margin: {t:0, b: 0}
+    };
+
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+    
+  
+  
+  })};
 
 
 init();
